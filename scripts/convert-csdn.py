@@ -100,8 +100,10 @@ def extract_date_from_filename(filename: str) -> Optional[str]:
 # ── 内容清理 ────────────────────────────────────────────
 def clean_content(content: str) -> str:
     """移除 CSDN 特有语法"""
-    # @[toc] / @[TOC] / [toc]
-    content = re.sub(r"^@\[toc\]\s*$", "", content, flags=re.MULTILINE | re.IGNORECASE)
+    # 先处理 BOM
+    content = content.lstrip("\ufeff")
+    # @[toc] / @[TOC] / @[TOC](文章目录) / [toc]
+    content = re.sub(r"^@\[toc\](\([^)]*\))?\s*$", "", content, flags=re.MULTILINE | re.IGNORECASE)
     content = re.sub(r"^\[toc\]\s*$", "", content, flags=re.MULTILINE | re.IGNORECASE)
     # 移除开头的空行
     content = content.lstrip("\n")
