@@ -67,4 +67,65 @@
   document.querySelectorAll('.article-card, .sidebar-card').forEach(function(el) {
     observer.observe(el);
   });
+
+  // ── Table of Contents ──
+  var postContent = document.getElementById('postContent');
+  var tocList = document.getElementById('tocList');
+  var tocSidebar = document.getElementById('tocSidebar');
+
+  if (postContent && tocList && tocSidebar) {
+    var headings = postContent.querySelectorAll('h2, h3');
+    var tocItems = [];
+
+    headings.forEach(function(h, i) {
+      // Add id if missing
+      if (!h.id) {
+        h.id = 'section-' + (i + 1);
+      }
+      var level = h.tagName.toLowerCase();
+      var item = {
+        id: h.id,
+        text: h.textContent,
+        level: level
+      };
+      tocItems.push(item);
+
+      // Build TOC link
+      var li = document.createElement('li');
+      li.className = 'toc-item' + (level === 'h3' ? ' toc-h3' : '');
+      var a = document.createElement('a');
+      a.href = '#' + h.id;
+      a.textContent = h.textContent;
+      a.setAttribute('data-target', h.id);
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var target = document.getElementById(this.getAttribute('data-target'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+      li.appendChild(a);
+      tocList.appendChild(li);
+    });
+
+    // Scroll spy with IntersectionObserver
+    var tocLinks = tocList.querySelectorAll('a');
+    var scrollObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var id = entry.target.id;
+          tocLinks.forEach(function(link) {
+            link.classList.toggle('active', link.getAttribute('data-target') === id);
+          });
+        }
+      });
+    }, {
+      rootMargin: '-80px 0px -70% 0px',
+      threshold: 0
+    });
+
+    headings.forEach(function(h) {
+      scrollObserver.observe(h);
+    });
+  }
 })();
