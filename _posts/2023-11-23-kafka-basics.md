@@ -4,8 +4,11 @@ date: 2023-11-23
 tags: [Kafka]
 ---
 
+## 一.定义
+
 Kafka是一种高吞吐量的分布式发布订阅消息系统，可以处理消费者规模的网站中的所有动作流数据，具有高性能，持久化，多副本备份，横向扩展能力等。
-# 二.基础架构及术语
+
+## 二.基础架构及术语
 ![在这里插入图片描述]({{ '/assets/images/posts/2023-11-23-kafka-basics/73a29daed2e1cbe6ce635fc0850822e6.png' | relative_url }})
 **Producer：** 生产者，消息的生产者，消息的入口
 **Kafka cluster：**
@@ -18,7 +21,7 @@ Kafka是一种高吞吐量的分布式发布订阅消息系统，可以处理消
 **Consumer Group：** 我们可以将多个消费者组成一个消费者组，在kafka的设计中同一个分区的数据只能被消费者组中的某一个消费者消费。同一个消费者组的消费者可以消费同一个topic的不同分区的数据，这也是为了提高kafka的吞吐量
 **Zookeeper：** kafka集群依赖zookeper来保存集群的元信息，保证系统的可用性
 
-# 三.工作流程分析
+## 三.工作流程分析
 ## 3.1发送数据
 生产者在写入数据的时候永远先找leader，不会直接将数据写入备胎
 ![在这里插入图片描述]({{ '/assets/images/posts/2023-11-23-kafka-basics/a94b25de8ebb8bbd22e502837b24d78b.png' | relative_url }})
