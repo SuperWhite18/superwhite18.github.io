@@ -1,0 +1,14 @@
+{% include head.html %}
+<body>
+<div class="page-wrapper">
+  {% include nav.html %}
+
+  {{ content }}
+
+  {% include footer.html %}
+</div>
+
+{% include search.html %}
+<script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<nav class="nav" id="navbar">
+  <div class="nav-inner">
+    <a href="{{ '/' | relative_url }}" class="nav-brand">
+      <span class="brand-dot"></span> {{ site.title }}
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>首页</a></li>
+      <li><a href="#" {% if page.url contains '/posts/' %}class="active"{% endif %}>文章</a></li>
+      <li><a href="#">分类</a></li>
+      <li><a href="#">关于</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="nav-btn" id="searchBtn" aria-label="搜索">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+      </button>
+      <button class="nav-btn theme-toggle" id="themeToggle" aria-label="切换主题">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2m-10-10h2m16 0h2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h0"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+      <button class="nav-btn menu-toggle" id="menuToggle" aria-label="菜单">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>

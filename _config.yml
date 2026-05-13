@@ -1,0 +1,32 @@
+title: Ink & Circuit
+description: 在代码与思想的交叉点上，记录每一次深度思考
+url: https://superwhite.github.io
+lang: zh-CN
+author: Mars
+permalink: /posts/:title/
+timezone: Asia/Shanghai
+
+plugins:
+  - jekyll-paginate
+  - jekyll-feed
+
+paginate: 5
+paginate_path: "/page/:num/"
+
+defaults:
+  - scope:
+      path: "_posts"
+    values:
+      layout: post
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - README.md
