@@ -1,0 +1,33 @@
+---
+layout: default
+title: 文章
+---
+
+<header class="hero container">
+  <p class="hero-eyebrow">All Posts</p>
+  <h1 class="hero-title">文章</h1>
+  <div class="hero-line"></div>
+</header>
+
+<main class="container">
+  <div class="article-list" style="max-width:760px;margin:2rem auto 4rem;">
+    {% for post in site.posts %}
+    <article class="article-card">
+      <div class="card-meta">
+        <span class="card-date">{{ post.date | date: "%Y.%m.%d" }}</span>
+        <span>&middot;</span>
+        <span class="card-reading-time">{{ post.read_time | default: "5 分钟" }}</span>
+      </div>
+      <h2 class="card-title">
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      </h2>
+      <p class="card-excerpt">{{ post.excerpt | strip_html }}</p>
+      <div class="card-tags">
+        {% for tag in post.tags %}
+        <a href="#" class="tag">{{ tag }}</a>
+        {% endfor %}
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</main>

@@ -1,0 +1,34 @@
+---
+layout: default
+title: 分类
+---
+
+<header class="hero container">
+  <p class="hero-eyebrow">Categories</p>
+  <h1 class="hero-title">分类</h1>
+  <div class="hero-line"></div>
+</header>
+
+<main class="container">
+  <div style="max-width:760px;margin:2rem auto 4rem;">
+    {% assign all_tags = site.posts | map: "tags" | uniq | sort %}
+    {% for tag in all_tags %}
+    <div class="sidebar-card" style="margin-bottom:1.5rem;">
+      <h2 class="sidebar-title">{{ tag }}</h2>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:0.5rem;">
+        {% for post in site.posts %}
+          {% if post.tags contains tag %}
+          <li>
+            <span style="font-family:var(--font-mono);font-size:0.72rem;color:var(--text-muted);">{{ post.date | date: "%Y.%m.%d" }}</span>
+            <a href="{{ post.url | relative_url }}" style="text-decoration:none;color:var(--text-primary);font-size:0.92rem;margin-left:0.75rem;transition:color var(--transition);"
+               onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-primary)'">
+              {{ post.title }}
+            </a>
+          </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  </div>
+</main>
